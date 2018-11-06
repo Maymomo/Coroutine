@@ -1,0 +1,27 @@
+[
+{
+  "directory": "/home/maymomo/project/coroutine",
+  "command": "/usr/bin/c++    -Wall -Wextra -g -O2   -o CMakeFiles/coroutine.dir/CScheduler.cc.o -c /home/maymomo/project/coroutine/CScheduler.cc",
+  "file": "/home/maymomo/project/coroutine/CScheduler.cc"
+},
+{
+  "directory": "/home/maymomo/project/coroutine",
+  "command": "/usr/bin/c++    -Wall -Wextra -g -O2   -o CMakeFiles/coroutine.dir/Coroutine.cc.o -c /home/maymomo/project/coroutine/Coroutine.cc",
+  "file": "/home/maymomo/project/coroutine/Coroutine.cc"
+},
+{
+  "directory": "/home/maymomo/project/coroutine",
+  "command": "/usr/bin/c++    -Wall -Wextra -g -O2   -o CMakeFiles/coroutine.dir/Lock.cc.o -c /home/maymomo/project/coroutine/Lock.cc",
+  "file": "/home/maymomo/project/coroutine/Lock.cc"
+},
+{
+  "directory": "/home/maymomo/project/coroutine",
+  "command": "/usr/bin/c++    -Wall -Wextra -g -O2   -o CMakeFiles/coroutine.dir/WaitQueue.cc.o -c /home/maymomo/project/coroutine/WaitQueue.cc",
+  "file": "/home/maymomo/project/coroutine/WaitQueue.cc"
+},
+{
+  "directory": "/home/maymomo/project/coroutine",
+  "command": "/usr/bin/c++    -Wall -Wextra -g -O2   -o CMakeFiles/coroutine.dir/main.cc.o -c /home/maymomo/project/coroutine/main.cc",
+  "file": "/home/maymomo/project/coroutine/main.cc"
+}
+]

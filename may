@@ -12,3 +12,79 @@ finish first context init and context switch
 we can store current context into a per-thread array
 
 then get current and scheduler
+
+定义coroutine生命周期
+RUNNABLE
+RUNNING
+STOPPED
+ZOMBIED
+
+RUNNABLE 当一个协程被创建时，或者被唤醒时，此状态可以被调度器运行
+RUNNING  协程正在运行
+WAITTING 当某些操作未能立刻完成，比如I/O, 被加入某些等待队列时
+ZOMBIED  协程运行结束，资源没有被释放，被加入到调度器的zombied队列中
+
+
+协程可以通过主动或者被动的方式进入调度器中
+
+主动的方式
+yeild 调度器(可以优化， 若队列中没有协程，则偷取别的，或者继续执行当前协程将其放入自身队列)
+被动放式
+将自身状态改为WAITTING，并加入等待队列
+之后主动让出cpp
+
+
+
+如何唤醒
+WAITTING -> RUNNABLE
+当某些条件达成时 由等待队列加入到全局队列, 由调度器从全局对列获取
+RUNNABLE
+协程被创建时，加入到调度器队列
+
+
+调度算法
+
+
+数据结构
+		Local Scheduler: p			OS thread: M		Coroutine: C
+
+						C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C|C		global C queue
+		
+			
+
+											 n P 
+			C|C|C|C|C local queue			.....		C|C|C|C|C|  local queue
+				p												p
+				|												|
+				C running										C running
+
+p m global 使用os lock
+上层使用 自定义锁
+可以这样 借用std::mutex 但是使用try_lock 
+
+sleep_lock
+
+while (!try_lock(mutex)) {
+	add_wait_queue
+}
+
+add_wait_queue(coroutine, queue)
+{
+	spin_lock(queue)
+	coroutine.swtch(lock)
+}
+
+spinlock
+
+unlock
+	notify	
+调度算法 work-steal
+			glob queue 
+			if(local_queue.empty()) {
+				if (random select another p.queue steal half)
+				if another has no C then
+					if (glob_queue.empty())
+						wait for glob queue
+					else
+						get max_coroutine
+			}

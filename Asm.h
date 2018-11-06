@@ -1,5 +1,14 @@
 #pragma once
 
 namespace coroutine {
-#define Rsp(__rsp)  {asm volatile ("movq %%rsp, %0" : (=a)(__rsp) ::);}
+
+static inline uint64_t Rsp() {
+	uint64_t rsp;
+	asm volatile ("movq %%rsp, %0;"
+	: "=a"(rsp)
+	:
+	:);
+	return rsp;
+}
+
 }
